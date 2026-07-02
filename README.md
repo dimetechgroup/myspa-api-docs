@@ -1,4 +1,4 @@
-# Spa Management SaaS — API Documentation
+# Myspa ERP System — API Documentation
 
 Public developer documentation for integrating with the Spa Management SaaS API.
 
