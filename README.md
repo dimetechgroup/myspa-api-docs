@@ -16,7 +16,7 @@ Public developer documentation for integrating with the Spa Management SaaS API.
 
 ## About
 
-This repository hosts the public-facing API reference for developers and integration partners. Documentation is written in Markdown and renders directly on GitHub, or can be published as a website via GitHub Pages (see [Publishing](#publishing)).
+This repository hosts the public-facing API reference for developers and integration partners.
 
 ## Support
 
