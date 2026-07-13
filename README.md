@@ -6,7 +6,7 @@ Public developer documentation for integrating with the Spa Management SaaS API.
 
 | API | Auth | Use it for |
 |-----|------|------------|
-| [Spa Management REST API](docs/rest-api.md) | Bearer token (Laravel Sanctum) | Full API — login, business switching, customers, and consultation records. Build mobile apps, integrations, and internal tools. |
+| [Spa Management REST API](docs/rest-api.md) | Bearer token | Full API — login, business switching, customers, and consultation records. Build mobile apps, integrations, and internal tools. |
 | [Lead Capture API](docs/lead-capture-api.md) | Business API key (`X-Api-Key`) | Push leads into the CRM from external sources (website forms, landing pages, funnels). |
 
 **Which one do I need?**
@@ -17,14 +17,6 @@ Public developer documentation for integrating with the Spa Management SaaS API.
 ## About
 
 This repository hosts the public-facing API reference for developers and integration partners. Documentation is written in Markdown and renders directly on GitHub, or can be published as a website via GitHub Pages (see [Publishing](#publishing)).
-
-## Publishing
-
-To publish these docs as a website with GitHub Pages:
-
-1. Go to the repository's **Settings → Pages**.
-2. Under **Build and deployment**, set the source to **Deploy from a branch**, choose the `master` branch and the `/ (root)` folder, and save.
-3. The docs will be available at `https://<org>.github.io/myspa-api-docs/` a few minutes later.
 
 ## Support
 
