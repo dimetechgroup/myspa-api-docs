@@ -37,13 +37,13 @@ Token-based REST API for the Myspa Spa Management ERP. Use it to build mobile ap
 
 ```bash
 # 1. Log in and grab a token
-curl -X POST https://<your-domain>/api/auth/login \
+curl -X POST https://app.myspa.co.ke/api/auth/login \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -d '{"email": "jane@spa.com", "password": "secret", "device_name": "my-app"}'
 
 # 2. Call any protected endpoint with the token
-curl https://<your-domain>/api/customers \
+curl https://app.myspa.co.ke/api/customers \
   -H "Authorization: Bearer <token>" \
   -H "Accept: application/json"
 ```
@@ -55,10 +55,8 @@ That's the whole loop: **login → token → Bearer header on every request**. R
 ## Base URL
 
 ```
-https://<your-domain>/api
+https://app.myspa.co.ke/api
 ```
-
-Replace `<your-domain>` with your deployment's domain. All paths in this document are relative to the domain root (they already include the `/api` prefix).
 
 ---
 
@@ -116,7 +114,7 @@ List endpoints return a standard **Laravel paginator** inside `data`:
     "per_page": 20,
     "total": 57,
     "last_page": 3,
-    "next_page_url": "https://<your-domain>/api/customers?page=2",
+    "next_page_url": "https://app.myspa.co.ke/api/customers?page=2",
     "prev_page_url": null
   }
 }
@@ -195,7 +193,7 @@ Exchange email + password for a Bearer token. **Rate limited: 10 requests per mi
 **Request**
 
 ```bash
-curl -X POST https://<your-domain>/api/auth/login \
+curl -X POST https://app.myspa.co.ke/api/auth/login \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -d '{"email": "jane@spa.com", "password": "secret", "device_name": "mobile-app"}'
@@ -251,7 +249,7 @@ curl -X POST https://<your-domain>/api/auth/login \
 Returns the authenticated user and their active business. Useful for restoring app state on launch and verifying a stored token is still valid.
 
 ```bash
-curl https://<your-domain>/api/auth/me \
+curl https://app.myspa.co.ke/api/auth/me \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
@@ -276,7 +274,7 @@ curl https://<your-domain>/api/auth/me \
 Revokes **the token used on this request**. Other tokens/devices stay logged in.
 
 ```bash
-curl -X POST https://<your-domain>/api/auth/logout \
+curl -X POST https://app.myspa.co.ke/api/auth/logout \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
@@ -295,7 +293,7 @@ curl -X POST https://<your-domain>/api/auth/logout \
 All businesses the token user may access. Exactly one has `is_active: true`.
 
 ```bash
-curl https://<your-domain>/api/businesses \
+curl https://app.myspa.co.ke/api/businesses \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
@@ -334,7 +332,7 @@ Makes `{businessId}` the user's active business.
 >  **The switch is account-wide.** All subsequent API calls — with **any** of the user's tokens — are scoped to the new business. It also affects the user's web session, matching the behavior of switching business in the web UI. If you run parallel jobs against different businesses, be aware they share this single active-business state.
 
 ```bash
-curl -X POST https://<your-domain>/api/businesses/7/switch \
+curl -X POST https://app.myspa.co.ke/api/businesses/7/switch \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
@@ -383,7 +381,7 @@ Paginated, searchable customer list.
 | `page` | integer | Page number |
 
 ```bash
-curl "https://<your-domain>/api/customers?search=jane&per_page=10" \
+curl "https://app.myspa.co.ke/api/customers?search=jane&per_page=10" \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
@@ -426,7 +424,7 @@ curl "https://<your-domain>/api/customers?search=jane&per_page=10" \
 Returns the full customer record, the assigned therapist (`id`, `name`, `email`), and a count per consultation type.
 
 ```bash
-curl https://<your-domain>/api/customers/12 \
+curl https://app.myspa.co.ke/api/customers/12 \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
@@ -439,7 +437,7 @@ Every consultation document for the customer, grouped by type, newest first (by 
 Best for a customer profile screen showing everything at once. For customers with many documents of one type, prefer [3.4](#34-consultations-by-type-paginated--get-apicustomersidconsultationstype-).
 
 ```bash
-curl https://<your-domain>/api/customers/12/consultations \
+curl https://app.myspa.co.ke/api/customers/12/consultations \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
@@ -475,7 +473,7 @@ Paginated consultation documents of a single type. Use this instead of [3.3](#33
 **Query parameters:** `per_page` (1–100, default 20), `page`
 
 ```bash
-curl "https://<your-domain>/api/customers/12/consultations/waxing?per_page=10" \
+curl "https://app.myspa.co.ke/api/customers/12/consultations/waxing?per_page=10" \
   -H "Authorization: Bearer <token>" -H "Accept: application/json"
 ```
 
